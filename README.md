@@ -43,9 +43,32 @@ A violação destes termos resultará em ações legais conforme a legislação 
 - Conta no [OpenRouter](https://openrouter.ai/)
 - Chave API (armazenada em `.env`)
 
+
 ### Instalação
 ```bash
 git clone https://github.com/Mogutaa/Cronicas-do-escriba-real.git
 cd Cronicas-do-escriba-real
 pip install -r requirements.txt
 streamlit run app.py
+
+
+🛡️ Contribuição
+Contribuições são restritas a colaboradores autorizados. Para solicitar acesso:
+
+Abra uma issue explicando sua proposta
+
+Aguarde análise e aprovação
+
+Siga o protocolo de contribuição após autorização
+
+📜 Aviso Legal
+Este projeto contém:
+
+Código 100% original
+
+Assets licenciados
+
+Documentação restrita
+
+Contato para licenciamento comercial:
+alanjose1d2013@gmail.com
