@@ -22,7 +22,6 @@ def exibir_header(mundo):
     st.markdown(f"""
     <div class="header-container">
         <div class="header-banner">
-            <img src="https://github.com/Mogutaa/Cronicas-do-escriba-real/blob/main/scrib.jpg?raw=true" class="header-illustration">
             <div class="header-content">
                 <h1 class="title">📜 {mundo}</h1>
                 <div class="header-description">
