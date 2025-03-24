@@ -44,11 +44,11 @@ def exibir_footer(personagem):
         <div class="footer-content">
             <div class="footer-section centered">
                 <h4>📜 Sobre o Projeto</h4>
-                <p>Escriba Real v1.3<br>Código: MIT License<br>Feito com ❤️ por Alan José</p>
+                <p>Escriba Real v1.3<br>Código: LICENÇA DE DESENVOLVEDOR EXCLUSIVA (LDE)<br>Feito com ❤️ por Alan José</p>
             </div>
         </div>
         <div class="footer-credits">
-            <p>© 2025 Crônicas Medievais - Todos os direitos reservados</p>
+            <p>© 2025 Alan José - Todos os direitos reservados</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
