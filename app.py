@@ -200,7 +200,7 @@ def exibir_jogo():
                 )
             
             with col2:
-                st.markdown("**Chave PIX (CPF):**")
+                st.markdown("**Chave PIX:**")
                 pix_key = "00020126360014br.gov.bcb.pix0114+5581987499210520400005303986540510.005802BR5910ALAN FILHO6009SAO PAULO62580520SAN2025032420195159250300017br.gov.bcb.brcode01051.0.063041F7E"
                 st.code(pix_key, language="text")
                 
