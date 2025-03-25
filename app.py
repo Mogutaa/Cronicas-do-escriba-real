@@ -112,7 +112,7 @@ def exibir_tela_inicial():
             enredo = st.text_area(
                 "Profecia Ancestral:",
                 height=150,
-                value="A lenda fala de um herói destinado a recuperar o Cetro de Élanor...",
+                value="A lenda fala de um herói destinado derrotar os Deuses externos e salvar o mundo",
                 help="Escreva o prólogo da aventura"
             )
 
