@@ -7,6 +7,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def iniciar_processamento():
+    st.session_state.processando = True
+
+def finalizar_processamento():
+    st.session_state.processando = False
+
+def botao_bloqueado():
+    return st.session_state.get('processando', False)
+
 def carregar_estilo():
     st.markdown("""
     <link href='https://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet'>
@@ -60,8 +69,11 @@ def main():
     )
     carregar_estilo()
 
+    # Inicializar estados
     if 'jogo' not in st.session_state:
         st.session_state.jogo = None
+    if 'processando' not in st.session_state:
+        st.session_state.processando = False
 
     if not st.session_state.jogo:
         exibir_tela_inicial()
@@ -82,20 +94,19 @@ def exibir_tela_inicial():
                 personagem_classe = st.selectbox(
                     "Classe:",
                     [
-    "Cavaleiro", "Mago", "Arqueiro", "Clérigo", "Ladino", "Bárbaro", "Paladino", "Feiticeiro", "Druida", "Guerreiro", 
-    "Monge", "Espadachim Arcano", "Guardião Sagrado", "Bardo Sombrio", "Atirador Arcano", "Xamã da Tempestade", 
-    "Caçador de Sombras", "Guerreiro Sangrento", "Monge Celestial", "Mestre do Fogo", "Guardião da Terra", "Senhor das Águas", 
-    "Tempestade Viva", "Invocador de Gelo", "Chamado do Vento", "Avatar do Caos", "Necromante", "Ceifador Sombrio", 
-    "Bruxo do Abismo", "Cavaleiro da Morte", "Vampiro Arcano", "Mestre das Marionetes", "Profeta do Vazio", "Mercador de Almas", 
-    "Cruzado Sagrado", "Arauto dos Deuses", "Paladino Radiante", "Sacerdote do Sol", "Guardião Celestial", "Exorcista", 
-    "Santo Guerreiro", "Ascendido", "Xamã", "Druida Metamorfo", "Guardião das Feras", "Caçador Selvagem", "Andarilho da Floresta", 
-    "Mestre das Vinhas", "Filho da Lua", "Senhor das Feras", "Engenheiro de Guerra", "Artífice Arcano", "Pistoleiro Mágico", 
-    "Mecânico de Golems", "Senhor das Máquinas", "Inventor do Caos", "Tecnomante", "Cavaleiro de Aço", "Guardião do Tempo", 
-    "Manipulador Dimensional", "Oráculo do Destino", "Andarilho do Vazio", "Tecelão da Realidade", "Senhor do Fluxo Temporal", 
-    "Guerreiro Estelar", "Viajante Interplanar", "Ilusionista", "Encantador de Sonhos", "Mestre do Karma", "Domador de Espíritos", 
-    "Visionário Astral", "Arquiteto das Fábulas", "Canalizador do Caos", "Equilibrador Cósmico"
-]
-
+                        "Cavaleiro", "Mago", "Arqueiro", "Clérigo", "Ladino", "Bárbaro", "Paladino", "Feiticeiro", "Druida", "Guerreiro", 
+                        "Monge", "Espadachim Arcano", "Guardião Sagrado", "Bardo Sombrio", "Atirador Arcano", "Xamã da Tempestade", 
+                        "Caçador de Sombras", "Guerreiro Sangrento", "Monge Celestial", "Mestre do Fogo", "Guardião da Terra", "Senhor das Águas", 
+                        "Tempestade Viva", "Invocador de Gelo", "Chamado do Vento", "Avatar do Caos", "Necromante", "Ceifador Sombrio", 
+                        "Bruxo do Abismo", "Cavaleiro da Morte", "Vampiro Arcano", "Mestre das Marionetes", "Profeta do Vazio", "Mercador de Almas", 
+                        "Cruzado Sagrado", "Arauto dos Deuses", "Paladino Radiante", "Sacerdote do Sol", "Guardião Celestial", "Exorcista", 
+                        "Santo Guerreiro", "Ascendido", "Xamã", "Druida Metamorfo", "Guardião das Feras", "Caçador Selvagem", "Andarilho da Floresta", 
+                        "Mestre das Vinhas", "Filho da Lua", "Senhor das Feras", "Engenheiro de Guerra", "Artífice Arcano", "Pistoleiro Mágico", 
+                        "Mecânico de Golems", "Senhor das Máquinas", "Inventor do Caos", "Tecnomante", "Cavaleiro de Aço", "Guardião do Tempo", 
+                        "Manipulador Dimensional", "Oráculo do Destino", "Andarilho do Vazio", "Tecelão da Realidade", "Senhor do Fluxo Temporal", 
+                        "Guerreiro Estelar", "Viajante Interplanar", "Ilusionista", "Encantador de Sonhos", "Mestre do Karma", "Domador de Espíritos", 
+                        "Visionário Astral", "Arquiteto das Fábulas", "Canalizador do Caos", "Equilibrador Cósmico"
+                    ]
                 )
                 
             with col2:
@@ -116,16 +127,20 @@ def exibir_tela_inicial():
                 help="Escreva o prólogo da aventura"
             )
 
-            if st.form_submit_button("⚔️ Iniciar Epopeia"):
-                st.session_state.jogo = JogoAventura(
-                    enredo=enredo,
-                    personagem={
-                        'nome': personagem_nome,
-                        'classe': personagem_classe,
-                        'habilidade': personagem_habilidade
-                    },
-                    mundo=mundo_principal
-                )
+            if st.form_submit_button("⚔️ Iniciar Epopeia", disabled=botao_bloqueado()):
+                iniciar_processamento()
+                try:
+                    st.session_state.jogo = JogoAventura(
+                        enredo=enredo,
+                        personagem={
+                            'nome': personagem_nome,
+                            'classe': personagem_classe,
+                            'habilidade': personagem_habilidade
+                        },
+                        mundo=mundo_principal
+                    )
+                finally:
+                    finalizar_processamento()
                 st.rerun()
 
 def exibir_jogo():
@@ -159,10 +174,15 @@ def exibir_jogo():
                         st.markdown(f"<div style='font-size:1.5rem; margin-bottom:10px;'>{acao['tipo'].icon()}</div>", unsafe_allow_html=True)
                         st.markdown(f"**{acao['texto']}**")
                         st.caption(acao.get('dica', ''))
-                        if st.button("Escolher", key=f"acao_{i}"):
-                            ultima_cena['acao_escolhida'] = acao['texto']
-                            jogo.processar_acao(acao)
-                            st.rerun()
+                        if st.button("Escolher", 
+                                   key=f"acao_{i}", 
+                                   disabled=botao_bloqueado(),
+                                   on_click=iniciar_processamento):
+                            with st.spinner("🕯️ O oráculo está tecendo seu destino..."):
+                                ultima_cena['acao_escolhida'] = acao['texto']
+                                jogo.processar_acao(acao)
+                                finalizar_processamento()
+                                st.rerun()
 
     with st.sidebar:
         with st.container(border=True):
@@ -172,20 +192,29 @@ def exibir_jogo():
             st.markdown(f"**Habilidade:** {jogo.personagem['habilidade']}")
             st.markdown(f"**Reino:** {jogo.mundo}")
             
-            if st.button("🌀 Revelação dos Deuses", help="Invoque uma reviravolta épica!"):
-                jogo.adicionar_plot_twist()
-                st.rerun()
+            if st.button("🌀 Revelação dos Deuses", 
+                       help="Invoque uma reviravolta épica!",
+                       disabled=botao_bloqueado(),
+                       on_click=iniciar_processamento):
+                with st.spinner("⚡ Os deuses estão conspirando..."):
+                    jogo.adicionar_plot_twist()
+                    finalizar_processamento()
+                    st.rerun()
 
-            if st.button("📜 Gerar PDF"):
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmpfile:
-                    gerar_pdf(jogo.para_json(), tmpfile.name)
-                    with open(tmpfile.name, "rb") as f:
-                        st.download_button(
-                            label="⬇️ Baixar Crônica",
-                            data=f.read(),
-                            file_name="cronicas_medievais.pdf",
-                            mime="application/pdf"
-                        )
+            if st.button("📜 Gerar PDF", 
+                       disabled=botao_bloqueado(),
+                       on_click=iniciar_processamento):
+                with st.spinner("📖 O escriba está gravando suas crônicas..."):
+                    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmpfile:
+                        gerar_pdf(jogo.para_json(), tmpfile.name)
+                        with open(tmpfile.name, "rb") as f:
+                            st.download_button(
+                                label="⬇️ Baixar Crônica",
+                                data=f.read(),
+                                file_name="cronicas_medievais.pdf",
+                                mime="application/pdf"
+                            )
+                    finalizar_processamento()
 
         with st.container(border=True):
             st.markdown("### ⚔️ Apoie o Desenvolvedor")
