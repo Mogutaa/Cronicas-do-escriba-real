@@ -53,7 +53,9 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-🛡️ Contribuições são restritas a colaboradores autorizados. Para solicitar acesso:
+🛡️ Contribuição
+
+Contribuições são restritas a colaboradores autorizados. Para solicitar acesso:
 
 Abra uma issue explicando sua proposta.
 
