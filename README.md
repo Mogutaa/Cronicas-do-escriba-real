@@ -1,4 +1,4 @@
-# 📜 Crônicas do Escriba Real  
+tô# 📜 Crônicas do Escriba Real  
 ### ⚔️ Um RPG Textual Interativo Gerado por IA  
 Crie histórias épicas em mundos dinâmicos, onde cada escolha altera o destino do reino.  
 
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-🛡️ Contribuição
+### 🛡️ Contribuição
 
 Contribuições são restritas a colaboradores autorizados. Para solicitar acesso:
 
@@ -63,7 +63,7 @@ Aguarde análise e aprovação.
 
 Siga o protocolo de contribuição após autorização.
 
-📜 Aviso Legal
+### 📜 Aviso Legal
 
 Este projeto contém:
 ✔️ Código 100% original
