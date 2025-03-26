@@ -119,7 +119,7 @@ body {
     padding: 0.5rem;
 }
 
-/* Ajustes para QR Code */
+
 .st-emotion-cache-1hynsf2 img {
     border: 2px solid #6b4f3a !important;
     border-radius: 8px;
@@ -127,7 +127,7 @@ body {
     background: white;
 }
 
-/* Melhorias na chave PIX */
+
 .st-emotion-cache-1hynsf2 code {
     background: rgba(255, 255, 255, 0.1) !important;
     color: #d4af37 !important;
@@ -190,7 +190,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* Footer Aprimorado */
+
 .footer-container {
     background: #3d2b1e;
     color: #d4af37;
@@ -229,7 +229,7 @@ body {
     opacity: 0.8;
 }
 
-/* Novos estilos adicionados */
+
 button:disabled {
     opacity: 0.5 !important;
     cursor: not-allowed !important;
